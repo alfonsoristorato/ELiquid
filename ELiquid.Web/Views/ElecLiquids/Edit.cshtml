@@ -1,0 +1,117 @@
+﻿@model ELiquid.Data.Models.ElecLiquid
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>@Model.Name</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.Category, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.PGVGRatio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PGVGRatio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PGVGRatio, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.PG, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PG, new { htmlAttributes = new { @class = "slider", type = "range", min = "0", max = "100", onchange = "PgVgChange()" } })
+            @Html.ValidationMessageFor(model => model.PG, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            Value:
+            <span id="PG-slider-value">@Html.DisplayFor(model => model.PG, new { htmlAttributes = new { @class = "slider-value" } })%</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VG, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VG, new { htmlAttributes = new { @class = "slider", type = "range", min = "0", max = "100", onchange = "PgVgChange()" } })
+            @Html.ValidationMessageFor(model => model.VG, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            Value: <span id="VG-slider-value">@Html.DisplayFor(model => model.VG, new { htmlAttributes = new { @class = "slider-value" } })%</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description,  new { @class = "form-control", rows="5"} )
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+
+            <input type="file" id="input_img" onchange="fileChange()" accept="image/*">
+            <div class="image-helper">Click "Choose file" and wait for the url of your image to appear in the field (it might take a while according to the file size)</div>
+        </div>
+    </div>
+
+    <div class="form-group invisible">
+        @Html.LabelFor(model => model.Like, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Like, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Like, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group invisible">
+        @Html.LabelFor(model => model.Dislike, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Dislike, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dislike, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" onclick="AddEdit()" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/picUpload.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    
+}

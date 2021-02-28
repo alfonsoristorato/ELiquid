@@ -1,0 +1,13 @@
+﻿@model ELiquid.Data.Models.ElecLiquid
+
+@*@Html.EnumDropDownListFor(model => model.Category, new { @class = "category btn home-buttons col-sm-2" })*@
+
+
+
+    <select name="category" id="category" class="btn home-buttons">
+        <option value="All">All</option>
+        <option value="Notspecified">Not specified</option>
+        <option value="Tobacco">Tobacco</option>
+        <option value="Fruit">Fruit</option>
+        <option value="Dessert">Dessert</option>
+    </select>

@@ -1,0 +1,37 @@
+﻿@model ELiquid.Data.Models.ElecLiquid
+
+<div class="panel panel-default col-md-6">
+    <div class="row panel-heading">
+        <h3 class="panel-title">@Html.DisplayFor(modelItem => Model.Name)</h3>
+    </div>
+
+    <div class="row panel-body vertical-align-100">
+        <div class="col-lg-6 col-sm-6">
+            @Html.LabelFor(model => Model.Category): @Html.DisplayFor(modelItem => Model.Category)<br />
+            @Html.LabelFor(model => Model.PGVGRatio): @Html.DisplayFor(modelItem => Model.PGVGRatio)
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center">
+            <img class="upload-image" src="@Html.DisplayFor(model => model.Image)" />
+        </div>
+        @*<div class="col-md-2">
+
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+            </div>*@
+    </div>
+
+    <div class="row panel-footer">
+        <div class="col-xs-6" align="left">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+        </div>
+        <div class="col-xs-6" align="right">
+            <a href="@Url.Action("Like", new { id = Model.Id })"><i class="glyphicon glyphicon-thumbs-up"></i></a> @Model.Like
+            <a href="@Url.Action("Dislike", new { id = Model.Id })"><i class="glyphicon glyphicon-thumbs-down"></i></a> @Model.Dislike
+        </div>        
+    </div>
+
+
+</div>

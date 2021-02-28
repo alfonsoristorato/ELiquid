@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ELiquid.Data.Models.ElecLiquid>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>E-Liquids Database</h1>
+    <div>
+        There are @Model.Count() E-Liquids in the @Html.ActionLink("Database", "Index", "ElecLiquids").
+    </div>
+</div>
+<div class="jumbotron col-xs-12">
+    <h4>Features</h4>
+    <p>
+        <a class="btn home-buttons mb-5" data-toggle="collapse" href="#CRUD" role="button" aria-expanded="false" aria-controls="collapseExample">
+            C.R.U.D.
+        </a>
+        <a class="btn home-buttons mb-5" data-toggle="collapse" href="#ImgBB" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Images and ImgBB API
+        </a>
+        <a class="btn home-buttons mb-5" data-toggle="collapse" href="#PGVGexplanation" role="button" aria-expanded="false" aria-controls="collapseExample">
+            PG / VG explanation and function
+        </a>
+    </p>
+    <div class="collapse" id="CRUD">
+        <div class="card card-body">
+            <h3>C.R.U.D.</h3>
+            The website uses C. (Create) R. (Read) U. (Update) D. (Delete) functionalities against a SQL database.
+            
+            <h4>Known issues</h4>
+            No known issues.
+        </div>
+    </div>
+    <div class="collapse" id="ImgBB">
+        <div class="card card-body">
+            <h3>Images and ImgBB API</h3>
+            ImgBB is a free image hosting and sharing service, the API is used in the "Create" and "Edit" views, so that the users can upload their own images URL to the string field. 
+            The other views will use the string into a < img > tag to display the selected image. If no image is selected and the field is left empty, a function will populate it with a deafult image.
+            <h4>Known issues</h4>
+            Uploading an image can take a while, depending by the file size. Working on a "loading" screen while the function executes.
+        </div>
+    </div>
+    <div class="collapse" id="PGVGexplanation">
+        <div class="card card-body">
+            <h3>PG / VG explanation and function</h3>
+            PG (Propylene Glycol) and VG (Vegetable Glycerine) are the main ingredients of an E-Liquid, the rest of the liquid is composed by nicotine (optional) and flavour (which can either be PG or VG based). 
+            A balanced E-Liquid will have ratio of 50% PG and 50% VG.
+            <h4>Known issues</h4>
+            In the "Create" and "Edit" views there is a slider that changes the percentage of PG or VG according to the percentage set for its opposite. The JS function stops working once a different slider is selected.
+        </div>
+    </div>
+</div>
